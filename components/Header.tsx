@@ -6,6 +6,8 @@ interface HeaderProps {
   wishlistCount: number;
   showWishlistOnly: boolean;
   setShowWishlistOnly: (val: boolean) => void;
+  cartCount: number;
+  onOpenCart: () => void;
 }
 
 const Header: React.FC<HeaderProps> = ({ 
@@ -13,7 +15,9 @@ const Header: React.FC<HeaderProps> = ({
   toggleDarkMode, 
   wishlistCount, 
   showWishlistOnly, 
-  setShowWishlistOnly 
+  setShowWishlistOnly,
+  cartCount,
+  onOpenCart
 }) => {
   return (
     <header className="pt-10 pb-6 mb-8 border-b border-gray-200 dark:border-slate-800 transition-colors duration-300">
@@ -30,6 +34,21 @@ const Header: React.FC<HeaderProps> = ({
         </div>
         
         <div className="flex items-center gap-3">
+          <button
+            onClick={onOpenCart}
+            className="relative p-2.5 rounded-xl border transition-all focus:ring-2 focus:ring-indigo-500 bg-white dark:bg-slate-900 border-gray-200 dark:border-slate-700 text-gray-600 dark:text-slate-300 hover:bg-gray-50 dark:hover:bg-slate-800 shadow-sm"
+            aria-label="Open cart"
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-1.5 7h13L17 13M9 21a1 1 0 100-2 1 1 0 000 2zm8 0a1 1 0 100-2 1 1 0 000 2z" />
+            </svg>
+            {cartCount > 0 && (
+              <span className="absolute -top-1.5 -right-1.5 flex h-5 w-5 items-center justify-center rounded-full bg-indigo-600 text-[10px] font-bold text-white ring-2 ring-white dark:ring-slate-950 animate-bounce-in">
+                {cartCount}
+              </span>
+            )}
+          </button>
+
           <button
             onClick={() => setShowWishlistOnly(!showWishlistOnly)}
             className={`relative p-2.5 rounded-xl border transition-all focus:ring-2 focus:ring-indigo-500 group ${

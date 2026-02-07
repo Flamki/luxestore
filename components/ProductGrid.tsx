@@ -7,13 +7,15 @@ interface ProductGridProps {
   wishlist: string[];
   toggleWishlist: (id: string) => void;
   isWishlistMode: boolean;
+  onAddToCart: (product: Product) => void;
 }
 
 const ProductGrid: React.FC<ProductGridProps> = ({ 
   products, 
   wishlist, 
   toggleWishlist, 
-  isWishlistMode 
+  isWishlistMode,
+  onAddToCart
 }) => {
   if (products.length === 0) {
     return (
@@ -43,6 +45,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           product={product} 
           isWishlisted={wishlist.includes(product.id)}
           onToggleWishlist={() => toggleWishlist(product.id)}
+          onAddToCart={onAddToCart}
         />
       ))}
     </div>

@@ -8,3 +8,10 @@ export interface Product {
 }
 
 export type Category = 'All' | 'Electronics' | 'Fashion' | 'Home' | 'Accessories';
+
+export interface CartItem {
+  product: Product;
+  quantity: number;
+}
+
+export type ShippingMethod = 'Standard' | 'Express' | 'Free';

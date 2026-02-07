@@ -5,12 +5,14 @@ interface ProductCardProps {
   product: Product;
   isWishlisted: boolean;
   onToggleWishlist: () => void;
+  onAddToCart: (product: Product) => void;
 }
 
-const ProductCard: React.FC<ProductCardProps> = ({ product, isWishlisted, onToggleWishlist }) => {
+const ProductCard: React.FC<ProductCardProps> = ({ product, isWishlisted, onToggleWishlist, onAddToCart }) => {
   const [isAdded, setIsAdded] = useState(false);
 
   const handleAddToCart = () => {
+    onAddToCart(product);
     setIsAdded(true);
     setTimeout(() => setIsAdded(false), 2000);
   };
